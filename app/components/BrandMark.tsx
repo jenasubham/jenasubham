@@ -10,11 +10,11 @@
  * viewBox is a fixed 32-unit grid; pass the rendered pixel `size`.
  */
 
-const VIOLET = '#7B45F0'
+const CORAL = '#FF6B47'
 
 export default function BrandMark({ size }: { size: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 32 32" fill={VIOLET}>
+    <svg width={size} height={size} viewBox="0 0 32 32" fill={CORAL}>
       {/* ear-flaps sticking out horizontally at the sides of the crown */}
       <ellipse cx="6" cy="15" rx="4" ry="2.6" />
       <ellipse cx="26" cy="15" rx="4" ry="2.6" />

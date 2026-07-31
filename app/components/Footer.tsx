@@ -3,14 +3,14 @@ export default function Footer() {
     {
       label: 'Reach',
       items: [
-        { text: 'subhamjena@gmail.com', href: 'mailto:subhamjena@gmail.com' },
+        { text: 'contact.subhamjena@gmail.com', href: 'mailto:contact.subhamjena@gmail.com' },
       ],
     },
     {
       label: 'Code & Web',
       items: [
         { text: 'GitHub', href: 'https://github.com/jenasubham' },
-        { text: 'Resume', href: '/resume.pdf', newTab: true },
+        { text: 'Resume', href: '/Subham_Jena_Resume.pdf', newTab: true },
       ],
     },
     {

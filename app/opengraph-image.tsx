@@ -41,10 +41,10 @@ export default async function OG() {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            <div style={{ width: 10, height: 10, borderRadius: 999, background: '#7B45F0' }} />
+            <div style={{ width: 10, height: 10, borderRadius: 999, background: '#FF6B47' }} />
             NEW DELHI, INDIA
           </div>
-          <div style={{ color: '#7B45F0' }}>JENASUBHAM</div>
+          <div style={{ color: '#FF6B47' }}>JENASUBHAM</div>
         </div>
 
         {/* name + tagline */}
@@ -59,7 +59,7 @@ export default async function OG() {
               display: 'flex',
             }}
           >
-            Subham Jena<span style={{ color: '#7B45F0' }}>.</span>
+            Subham Jena<span style={{ color: '#FF6B47' }}>.</span>
           </div>
           <div
             style={{

@@ -15,7 +15,7 @@ const ROLES: Role[] = [
     company: 'PrudentBit',
     role: 'Frontend Engineer',
     location: 'Noida',
-    dates: 'Oct 2024 — Present',
+    dates: 'Oct 2025 — Present',
     lead: 'Sole frontend engineer driving enterprise secure file-sharing products (Immunefiles & Immuneshare).',
     metrics: ['~64% bandwidth saved', 'Client-side ML', 'Granular Redaction'],
     bullets: [
@@ -68,7 +68,7 @@ export default function Experience() {
       id="experience"
       className="mx-auto max-w-[1180px] border-t border-rule px-6 py-32 md:px-12 md:py-36"
     >
-      <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-accent">
+      <p className="mb-6 font-mono text-[13px] font-semibold uppercase tracking-[0.25em] text-accent">
         § 2 — Experience
       </p>
       <h2
@@ -91,13 +91,13 @@ export default function Experience() {
             <path
               className="rail-base"
               d={RAIL_PATH}
-              strokeWidth={1.5}
+              strokeWidth={2.5}
               vectorEffect="non-scaling-stroke"
             />
             <path
               className="rail-coral"
               d={RAIL_PATH}
-              strokeWidth={1.5}
+              strokeWidth={2.5}
               vectorEffect="non-scaling-stroke"
               pathLength={1}
               strokeDasharray={1}
@@ -111,7 +111,7 @@ export default function Experience() {
             <div key={r.company} className="contents">
               {/* rail node, aligned to this role's heading */}
               <div
-                className={`exp-node hidden md:flex md:items-start md:gap-3 md:pl-[15px] ${
+                className={`exp-node hidden md:flex md:items-start md:gap-3 md:pl-[14px] ${
                   i === 0 ? 'pt-0' : 'pt-12'
                 }`}
                 style={
@@ -124,8 +124,8 @@ export default function Experience() {
                 }
                 aria-hidden
               >
-                <span className="exp-dot mt-[6px] h-2.5 w-2.5 shrink-0 rounded-full border" />
-                <span className="exp-num mt-[4px] font-mono text-[11px] tracking-[0.1em]">
+                <span className="exp-dot mt-[5px] h-3 w-3 shrink-0 rounded-full border-2" />
+                <span className="exp-num mt-[3px] font-mono text-[12px] font-semibold tracking-[0.1em]">
                   0{i + 1}
                 </span>
               </div>
@@ -140,7 +140,7 @@ export default function Experience() {
                   <h3 className="font-serif text-[40px] font-normal leading-none tracking-[-0.02em] md:text-[48px]">
                     <span className="italic text-accent">{r.company}</span>
                   </h3>
-                  <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
+                  <p className="font-mono text-[13px] font-semibold uppercase tracking-[0.2em] text-accent">
                     {r.dates}
                   </p>
                 </header>

@@ -1,17 +1,13 @@
 @import "tailwindcss";
 
-/* Design tokens — Tailwind v4 uses CSS-based theme config (no tailwind.config.ts).
-   The token VALUES point at runtime-swappable vars (--c-*) defined per theme
-   below, so flipping [data-theme] on <html> re-resolves every utility
-   (text-ink, bg-background, text-accent, …) in a single paint — no JS,
-   no component re-render. */
+/* Design tokens — Tailwind v4 CSS theme configuration */
 @theme {
   --color-background: var(--c-bg);
   --color-ink: var(--c-ink);
   --color-muted: var(--c-muted);
   --color-whisper: var(--c-whisper);
   --color-accent: var(--c-accent);
-  --color-exp-orange: var(--c-exp-orange); /* experience nodes (doesn't fade with scroll) */
+  --color-exp-orange: var(--c-exp-orange);
   --color-rule: var(--c-rule);
   --color-rule-soft: var(--c-rule-soft);
 
@@ -21,12 +17,7 @@
 }
 
 /* ──────────────────────────────────────────────
-   Theme palettes
-   :root defaults to DARK, so server-rendered HTML (which carries no
-   data-theme until the pre-paint init script runs) is already the dark
-   design — the documented default and a safe no-JS fallback.
-   --accent-rgb / --ink-rgb are bare triples MotionLayer reads to drive the
-   scroll accent→ink resolve without a per-theme code path.
+   Theme Palettes (Dark & Light)
    ────────────────────────────────────────────── */
 :root,
 [data-theme='dark'] {
@@ -34,43 +25,38 @@
   --c-ink: #e8e2d5;
   --c-muted: rgba(232, 226, 213, 0.72);
   --c-whisper: rgba(232, 226, 213, 0.5);
-  
-  /* DEFAULT ACTIVE ACCENT: PURPLE (#7B45F0) */
-  --c-accent: #7B45F0;
-  --c-exp-orange: #7B45F0;
-  --accent-rgb: 123 69 240;
-
+  --c-accent: #ff6b47;
+  --c-exp-orange: #ff7a1a;
   --c-rule: rgba(232, 226, 213, 0.1);
   --c-rule-soft: rgba(232, 226, 213, 0.06);
+
+  --accent-rgb: 255 107 71;
   --ink-rgb: 232 226 213;
 
   /* per-theme chrome */
   --nav-bg: rgba(5, 5, 5, 0.7);
-  --rail-glow: 4px; /* accent rail drop-shadow blur */
-  --glow-strength: 1; /* node fan-glow multiplier */
+  --rail-glow: 4px;
+  --glow-strength: 1;
   --sel-text: #050505;
 
   /* toggle */
   --tt-track-bg: rgba(255, 255, 255, 0.045);
   --tt-thumb-bg: #050505;
-  --tt-thumb-shadow: 0 0 12px rgba(123, 69, 240, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  --tt-thumb-shadow: 0 0 12px rgba(255, 107, 71, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
   color-scheme: dark;
 }
 
 [data-theme='light'] {
-  /* warm paper, not pure white — keeps the editorial warmth of the dark design */
   --c-bg: #f7f4ec;
   --c-ink: #221c14;
   --c-muted: rgba(34, 28, 20, 0.66);
   --c-whisper: rgba(34, 28, 20, 0.42);
-  
-  /* DEFAULT LIGHT ACCENT: ROYAL PURPLE (#6631DB) */
-  --c-accent: #6631DB;
-  --c-exp-orange: #6631DB;
-  --accent-rgb: 102 49 219;
-
+  --c-accent: #d8502b;
+  --c-exp-orange: #d8502b;
   --c-rule: rgba(34, 28, 20, 0.13);
   --c-rule-soft: rgba(34, 28, 20, 0.07);
+
+  --accent-rgb: 216 80 43;
   --ink-rgb: 34 28 20;
 
   --nav-bg: rgba(247, 244, 236, 0.72);
@@ -82,48 +68,6 @@
   --tt-thumb-bg: #ffffff;
   --tt-thumb-shadow: 0 2px 8px rgba(34, 28, 20, 0.18);
   color-scheme: light;
-}
-
-/* ──────────────────────────────────────────────
-   Accent Presets (Instant Theme Switch Safety Net)
-   To switch themes, simply add data-accent="orange", "purple", or "blue"
-   on <html> tag, or uncomment the preset block below!
-   ────────────────────────────────────────────── */
-
-/* 1. ORIGINAL CLASSIC ORANGE THEME PRESET */
-[data-accent='orange'] {
-  --c-accent: #ff6b47 !important;
-  --c-exp-orange: #ff7a1a !important;
-  --accent-rgb: 255 107 71 !important;
-}
-[data-theme='light'][data-accent='orange'] {
-  --c-accent: #d8502b !important;
-  --c-exp-orange: #d8502b !important;
-  --accent-rgb: 216 80 43 !important;
-}
-
-/* 2. ELECTRIC PURPLE THEME PRESET */
-[data-accent='purple'] {
-  --c-accent: #7B45F0 !important;
-  --c-exp-orange: #7B45F0 !important;
-  --accent-rgb: 123 69 240 !important;
-}
-[data-theme='light'][data-accent='purple'] {
-  --c-accent: #6631DB !important;
-  --c-exp-orange: #6631DB !important;
-  --accent-rgb: 102 49 219 !important;
-}
-
-/* 3. ELECTRIC BLUE THEME PRESET */
-[data-accent='blue'] {
-  --c-accent: #3B82F6 !important;
-  --c-exp-orange: #60A5FA !important;
-  --accent-rgb: 59 130 246 !important;
-}
-[data-theme='light'][data-accent='blue'] {
-  --c-accent: #2563EB !important;
-  --c-exp-orange: #2563EB !important;
-  --accent-rgb: 37 99 235 !important;
 }
 
 @layer base {
@@ -151,10 +95,7 @@
 }
 
 /* ──────────────────────────────────────────────
-   Motion system
-   Everything here is deliberate and gated behind
-   prefers-reduced-motion so the default (reduced)
-   experience is fully visible and static.
+   Motion System & Navigation
    ────────────────────────────────────────────── */
 
 @keyframes seqFadeDown {
@@ -170,7 +111,6 @@
   to   { clip-path: inset(0 0 0 0); }
 }
 
-/* Top nav: hidden over the hero, slides in once you scroll past it */
 .site-nav {
   transform: translateY(-100%);
   opacity: 0;
@@ -193,7 +133,6 @@ body[data-scrolled] .site-nav {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  /* page-load sequence */
   .seq-status   { opacity: 0; animation: seqFadeDown 0.5s ease 0.3s forwards; }
   .seq-name     { clip-path: inset(0 100% 0 0); animation: seqReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards; }
   .seq-tagline  { opacity: 0; animation: seqFadeUp 0.6s ease 0.9s forwards; }
@@ -203,7 +142,6 @@ body[data-scrolled] .site-nav {
   .seq-para     { opacity: 0; animation: seqFadeUp 0.5s ease 1.45s forwards; }
   .seq-cta      { opacity: 0; animation: seqFadeUp 0.5s ease 1.55s forwards; }
 
-  /* scroll-driven hero shrink + tagline parallax (vars set by MotionLayer) */
   .hero-shrink {
     transform: scale(calc(1 - 0.04 * var(--hero, 0)));
     transform-origin: left top;
@@ -216,19 +154,7 @@ body[data-scrolled] .site-nav {
 }
 
 /* ──────────────────────────────────────────────
-   Experience — geometric scroll rail
-   A circuit-trace timeline pinned to the left of
-   the experience list. The coral line draws down
-   as you scroll the section; each node lights as
-   the line reaches it. Everything is driven by a
-   single var (--exp-progress) set in MotionLayer's
-   existing rAF loop and resolved entirely in CSS —
-   no extra listeners, no main-thread work.
-
-   Default (no JS / reduced motion / older browsers):
-   the rail is fully drawn and every node is lit, so
-   it reads as a finished timeline and never blocks
-   or breaks the page.
+   Experience Timeline Rail
    ────────────────────────────────────────────── */
 .exp {
   position: relative;
@@ -253,18 +179,15 @@ body[data-scrolled] .site-nav {
   height: 100%;
 }
 .rail-base {
-  stroke: var(--color-rule);
+  stroke: color-mix(in srgb, var(--color-rule) 180%, var(--color-ink));
+  opacity: 0.6;
 }
 .rail-coral {
   stroke: var(--color-accent);
-  stroke-dashoffset: 0; /* fallback: fully drawn */
-  /* glow blur is per-theme: a bloom on black, a crisp drawn line on paper */
-  filter: drop-shadow(0 0 var(--rail-glow) color-mix(in srgb, var(--color-accent) 55%, transparent));
+  stroke-dashoffset: 0;
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--color-accent) 80%, transparent));
 }
 
-/* nodes — default lit (fallback); --at is each node's fraction down the rail.
-   An unlit node is an empty outlined circle; a lit one fills coral and casts a
-   three-blade fan glow (the ::before pseudo) rather than a flat circular halo. */
 .exp-node {
   --lit: 1;
 }
@@ -273,15 +196,12 @@ body[data-scrolled] .site-nav {
   box-sizing: border-box;
   width: 10px;
   height: 10px;
-  flex: none; /* identical size for every node, regardless of row height */
-  left: var(--dot-shift, 0); /* nudge onto the jogged rail segment */
-  /* opaque base so the rail line never shows through the dot; orange fills in as lit */
+  flex: none;
+  left: var(--dot-shift, 0);
   background: color-mix(in srgb, var(--color-exp-orange) calc(var(--lit) * 100%), var(--color-background));
   border-color: color-mix(in srgb, var(--color-exp-orange) calc(var(--lit) * 100%), var(--color-rule));
   transition: background 0.2s linear, border-color 0.2s linear;
 }
-/* three-blade fan glow behind the dot — only the blades are lit, masked to
-   fade outward, so it reads as a fanned glow not a solid disc */
 .exp-dot::before {
   content: '';
   position: absolute;
@@ -307,14 +227,10 @@ body[data-scrolled] .site-nav {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  /* once JS is live, the rail tracks scroll instead of sitting fully drawn */
   body[data-motion] .rail-coral {
     stroke-dashoffset: calc(1 - var(--exp-progress, 0));
     transition: stroke-dashoffset 0.12s linear;
   }
-  /* comet trail: a node lights as the rail reaches it (the * 60 gate), then its
-     glow decays the further the scroll has moved past it — most-recently-passed
-     is brightest, older ones fade toward a faint floor. */
   body[data-motion] .exp-node {
     --past: calc(var(--exp-progress, 0) - var(--at, 0));
     --lit: clamp(
@@ -324,10 +240,6 @@ body[data-scrolled] .site-nav {
     );
   }
 
-  /* Active-node pulse: the lit dot breathes. The animation runs on every dot,
-     but its amplitude is gated by --lit — so the brightest (most-recently-passed)
-     node pulses fully while older, dimmer ones barely move. No JS, no per-node
-     state; it rides the same --lit the comet trail already computes. */
   body[data-motion] .exp-dot::after {
     content: '';
     position: absolute;
@@ -350,11 +262,6 @@ body[data-scrolled] .site-nav {
     }
   }
 
-  /* Bullets fade + rise as their role scrolls into view, staggering naturally
-     because each <li> sits at a different height and owns its own view()
-     timeline. Pure CSS scroll-driven animation — no IntersectionObserver, no
-     listeners. Browsers without animation-timeline simply show the bullets
-     in their final (visible) state. */
   @supports (animation-timeline: view()) {
     body[data-motion] .exp-bullet {
       opacity: 0;
@@ -373,15 +280,10 @@ body[data-scrolled] .site-nav {
 }
 
 /* ──────────────────────────────────────────────
-   Experience — metric chips + View Details toggle
-   The metric numbers are the always-visible face of
-   each role; the detail bullets live in a native
-   <details> so expand/collapse needs no JS and stays
-   keyboard-accessible. Only the summary's label and
-   the [+]/[−] mark swap on open.
+   Experience Details Toggle
    ────────────────────────────────────────────── */
 .exp-summary {
-  list-style: none; /* drop the default disclosure triangle */
+  list-style: none;
   width: fit-content;
   padding: 6px 0;
   text-underline-offset: 4px;
@@ -392,7 +294,6 @@ body[data-scrolled] .site-nav {
 .exp-summary::-webkit-details-marker {
   display: none;
 }
-/* Capabilities accordion uses the same native <details>; drop Safari's marker */
 .stack-row > summary::-webkit-details-marker {
   display: none;
 }
@@ -407,9 +308,8 @@ body[data-scrolled] .site-nav {
   transition: transform 0.25s ease;
 }
 .exp-details[open] .exp-summary-mark {
-  transform: rotate(180deg); /* chevron flips up when open */
+  transform: rotate(180deg);
 }
-/* swap the label text on open without duplicating the toggle */
 .exp-summary-hide,
 .exp-details[open] .exp-summary-show {
   display: none;
@@ -419,11 +319,7 @@ body[data-scrolled] .site-nav {
 }
 
 /* ──────────────────────────────────────────────
-   Theme toggle — slider pill
-   Both icons live in the track; the thumb slides over the active one.
-   Light → thumb left over the sun; dark → thumb right over the moon.
-   The active icon lights coral; the other dims to whisper.
-   Everything is a GPU transform — no JS animation.
+   Theme Toggle Switch
    ────────────────────────────────────────────── */
 .theme-toggle {
   display: inline-flex;
@@ -441,7 +337,7 @@ body[data-scrolled] .site-nav {
 .tt-track {
   position: relative;
   display: block;
-  width: 58px;
+  width: 56px;
   height: 28px;
   border-radius: 9999px;
   background: var(--tt-track-bg);
@@ -450,18 +346,17 @@ body[data-scrolled] .site-nav {
 }
 .tt-thumb {
   position: absolute;
-  top: 3px;
-  left: 3px;
+  top: 2px;
+  left: 2px;
   width: 22px;
   height: 22px;
   border-radius: 9999px;
   background: var(--tt-thumb-bg);
   box-shadow: var(--tt-thumb-shadow);
-  transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease,
-    box-shadow 0.4s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease, box-shadow 0.35s ease;
 }
 [data-theme-state='dark'] .tt-thumb {
-  transform: translateX(30px);
+  transform: translateX(28px);
 }
 [data-theme-state='light'] .tt-thumb {
   transform: translateX(0);
@@ -469,20 +364,19 @@ body[data-scrolled] .site-nav {
 .tt-icon {
   position: absolute;
   top: 50%;
-  width: 13px;
-  height: 13px;
+  width: 14px;
+  height: 14px;
   transform: translateY(-50%);
   z-index: 2;
   pointer-events: none;
   transition: color 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
 }
 .tt-sun {
-  left: 7.5px;
+  left: 6px;
 }
 .tt-moon {
-  right: 7.5px;
+  right: 6px;
 }
-/* active icon (sits on the thumb) glows coral; inactive dims into the track */
 [data-theme-state='light'] .tt-sun,
 [data-theme-state='dark'] .tt-moon {
   color: var(--color-accent);
@@ -495,24 +389,21 @@ body[data-scrolled] .site-nav {
   opacity: 0.55;
   filter: none;
 }
-/* the coral accent dot from the design — a tiny tick above the active side */
 .tt-track::after {
   content: '';
   position: absolute;
-  top: -1px;
-  width: 3px;
-  height: 3px;
+  top: -5px;
+  left: 11px;
+  width: 4px;
+  height: 4px;
   border-radius: 9999px;
   background: var(--color-accent);
-  opacity: 0.9;
-  transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
-}
-[data-theme-state='light'] .tt-track::after {
-  left: 12px;
+  opacity: 0.95;
+  box-shadow: 0 0 6px color-mix(in srgb, var(--color-accent) 60%, transparent);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 [data-theme-state='dark'] .tt-track::after {
-  left: 12px;
-  transform: translateX(30px);
+  transform: translateX(28px);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -523,17 +414,7 @@ body[data-scrolled] .site-nav {
 }
 
 /* ──────────────────────────────────────────────
-   Project cards — "states, not destinations"
-   Three cards have no destination yet (in progress / forthcoming / unlinked).
-   They must not borrow the real links' "navigate here" language (lift + border
-   → ink). Instead they get their own honest vocabulary: cursor stays default,
-   the border warms toward CORAL (not ink), and a soft coral bloom rises from
-   within on hover — reads as "alive / in progress", not "click me".
-
-   Only transform (the Tailwind lift) + opacity (the bloom) animate, so it all
-   rides the compositor — no JS, no reflow, nothing on the main thread. The
-   bloom's initial/animated state lives only under no-preference; the resting
-   card is the complete, fully-legible fallback.
+   Project Cards
    ────────────────────────────────────────────── */
 .proj-still,
 .proj-card {

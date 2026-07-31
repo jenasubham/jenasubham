@@ -1,7 +1,7 @@
 export default function Bio() {
   return (
     <section id="about" className="mx-auto max-w-[720px] border-t border-rule px-6 py-32 md:px-12 md:py-36">
-      <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-accent">
+      <p className="mb-6 font-mono text-[13px] font-semibold uppercase tracking-[0.25em] text-accent">
         § 1 — Introduction
       </p>
 

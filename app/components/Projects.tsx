@@ -1,7 +1,7 @@
 export default function Projects() {
   return (
     <section id="work" className="mx-auto max-w-[1100px] border-t border-rule px-6 py-32 md:px-12 md:py-36">
-      <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-accent">
+      <p className="mb-6 font-mono text-[13px] font-semibold uppercase tracking-[0.25em] text-accent">
         § 5 — Projects & Featured Work
       </p>
       <h2

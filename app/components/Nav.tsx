@@ -1,0 +1,35 @@
+const LINKS = [
+  { label: 'About', href: '#about' },
+  { label: 'Stack', href: '#stack' },
+  { label: 'Work', href: '#work' },
+  { label: 'Contact', href: '#contact' },
+]
+
+export default function Nav() {
+  return (
+    <header className="site-nav fixed inset-x-0 top-0 z-50">
+      <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 md:px-12">
+        <a
+          href="#top"
+          className="font-sans text-[15px] font-semibold tracking-[-0.01em] text-ink"
+        >
+          Subham Jena<span className="text-accent">.</span>
+        </a>
+        {/* trailing space reserves room for the fixed ThemeToggle that overlays
+            the nav's right edge, so the last link never sits under it */}
+        <ul className="flex items-center gap-7 pr-[74px] md:gap-9 md:pr-[78px]">
+          {LINKS.map((l) => (
+            <li key={l.href}>
+              <a
+                href={l.href}
+                className="font-mono text-[12px] uppercase tracking-[0.15em] text-muted transition-colors duration-200 hover:text-ink"
+              >
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+  )
+}

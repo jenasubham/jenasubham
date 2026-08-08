@@ -17,10 +17,6 @@ import { useEffect } from 'react'
  *   data-scrolled    present once scrolled past ~10px (nav gets its blur)
  *   data-nav         present once past 60% of the hero (nav slides in)
  *   data-motion      present once JS motion is live (CSS switches static → dynamic)
- *
- * The accent→ink resolve reads the LIVE theme: --accent-rgb / --ink-rgb are
- * bare "r g b" triples defined per theme in globals.css, so the same loop works
- * in dark and light. They're re-read on the 'themechange' event the toggle fires.
  */
 
 export default function MotionLayer() {
@@ -37,17 +33,8 @@ export default function MotionLayer() {
       return parts.length === 3 ? parts : fallback
     }
 
-    let accent = readTriple('--accent-rgb', [123, 69, 240])
-    let ink = readTriple('--ink-rgb', [232, 226, 213])
-
-    // the toggle clears the inline --color-accent override so the new theme's
-    // base accent shows through, then we re-read both bases and repaint
-    const onThemeChange = () => {
-      root.style.removeProperty('--color-accent')
-      accent = readTriple('--accent-rgb', accent)
-      ink = readTriple('--ink-rgb', ink)
-      apply()
-    }
+    const accent = readTriple('--accent-rgb', [185, 242, 200])
+    const ink = readTriple('--ink-rgb', [232, 226, 213])
 
     let ticking = false
 
@@ -87,8 +74,7 @@ export default function MotionLayer() {
 
     apply() // set initial state (covers reloads at a scrolled position)
 
-    // repaint the accent whenever the theme flips (works under reduced motion too)
-    window.addEventListener('themechange', onThemeChange)
+
 
     if (!reduce) {
       body.setAttribute('data-motion', '') // CSS switches the rail from static to scroll-driven
@@ -97,9 +83,10 @@ export default function MotionLayer() {
     }
 
     return () => {
-      window.removeEventListener('themechange', onThemeChange)
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
+      if (!reduce) {
+        window.removeEventListener('scroll', onScroll)
+        window.removeEventListener('resize', onScroll)
+      }
     }
   }, [])
 

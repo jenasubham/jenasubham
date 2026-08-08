@@ -4,6 +4,7 @@
 @theme {
   --color-background: var(--c-bg);
   --color-ink: var(--c-ink);
+  --color-heading: var(--c-heading);
   --color-muted: var(--c-muted);
   --color-whisper: var(--c-whisper);
   --color-accent: var(--c-accent);
@@ -19,55 +20,26 @@
 /* ──────────────────────────────────────────────
    Theme Palettes (Dark & Light)
    ────────────────────────────────────────────── */
-:root,
-[data-theme='dark'] {
-  --c-bg: #050505;
+:root {
+  --c-bg: #131217;
   --c-ink: #e8e2d5;
+  --c-heading: #ffffff;
   --c-muted: rgba(232, 226, 213, 0.72);
   --c-whisper: rgba(232, 226, 213, 0.5);
-  --c-accent: #ff6b47;
-  --c-exp-orange: #ff7a1a;
+  --c-accent: #B9F2C8;
+  --c-exp-orange: #B9F2C8;
   --c-rule: rgba(232, 226, 213, 0.1);
   --c-rule-soft: rgba(232, 226, 213, 0.06);
 
-  --accent-rgb: 255 107 71;
+  --accent-rgb: 185 242 200;
   --ink-rgb: 232 226 213;
 
-  /* per-theme chrome */
-  --nav-bg: rgba(5, 5, 5, 0.7);
-  --rail-glow: 4px;
+  /* chrome */
+  --nav-bg: rgba(19, 18, 23, 0.75);
+  --rail-glow: 6px;
   --glow-strength: 1;
-  --sel-text: #050505;
-
-  /* toggle */
-  --tt-track-bg: rgba(255, 255, 255, 0.045);
-  --tt-thumb-bg: #050505;
-  --tt-thumb-shadow: 0 0 12px rgba(255, 107, 71, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  --sel-text: #131217;
   color-scheme: dark;
-}
-
-[data-theme='light'] {
-  --c-bg: #f7f4ec;
-  --c-ink: #221c14;
-  --c-muted: rgba(34, 28, 20, 0.66);
-  --c-whisper: rgba(34, 28, 20, 0.42);
-  --c-accent: #d8502b;
-  --c-exp-orange: #d8502b;
-  --c-rule: rgba(34, 28, 20, 0.13);
-  --c-rule-soft: rgba(34, 28, 20, 0.07);
-
-  --accent-rgb: 216 80 43;
-  --ink-rgb: 34 28 20;
-
-  --nav-bg: rgba(247, 244, 236, 0.72);
-  --rail-glow: 0.5px;
-  --glow-strength: 0.4;
-  --sel-text: #f7f4ec;
-
-  --tt-track-bg: rgba(34, 28, 20, 0.06);
-  --tt-thumb-bg: #ffffff;
-  --tt-thumb-shadow: 0 2px 8px rgba(34, 28, 20, 0.18);
-  color-scheme: light;
 }
 
 @layer base {
@@ -75,7 +47,7 @@
     scroll-behavior: smooth;
   }
   body {
-    background-color: var(--color-background);
+    background-color: #131217 !important;
     color: var(--color-ink);
     font-family: var(--font-geist-sans), system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -83,6 +55,64 @@
     text-rendering: optimizeLegibility;
     /* smooth the palette swap for anything not covered by the view transition */
     transition: background-color 0.4s ease, color 0.4s ease;
+  }
+  h1, h2, h3, h4, h5, h6, .text-heading, .hero-tagline, .cap-title, .cert-title {
+    color: #ffffff !important;
+  }
+  .text-accent,
+  .text-accent *,
+  h1 .text-accent,
+  h2 .text-accent,
+  h3 .text-accent {
+    color: #b9f2c8 !important;
+    background: linear-gradient(to top, #e4fbea 0%, #cef6d9 20%, #b9f2c8 48%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    display: inline-block !important;
+  }
+  .proj-still--on-accent,
+  .proj-still--on-accent p,
+  .proj-still--on-accent h3,
+  .proj-still--on-accent div {
+    color: #050505 !important;
+    -webkit-text-fill-color: #050505 !important;
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+  }
+  .proj-still--on-accent .proj-dot--live {
+    background-color: #050505 !important;
+    background: #050505 !important;
+    -webkit-text-fill-color: initial !important;
+    display: inline-block !important;
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 9999px !important;
+  }
+  .proj-still--on-accent .proj-dot--live::after {
+    background-color: #050505 !important;
+    background: #050505 !important;
+  }
+  .proj-still--on-accent p.proj-tag-dark {
+    color: rgba(5, 5, 5, 0.65) !important;
+    -webkit-text-fill-color: rgba(5, 5, 5, 0.65) !important;
+  }
+  .proj-still--on-accent p.proj-desc-dark {
+    color: rgba(5, 5, 5, 0.82) !important;
+    -webkit-text-fill-color: rgba(5, 5, 5, 0.82) !important;
+  }
+  .dot-white,
+  h1 .dot-white {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background-clip: initial !important;
+    color: #ffffff !important;
+    display: inline-block !important;
+  }
+  .bg-accent {
+    background: linear-gradient(to top, #e4fbea 0%, #cef6d9 20%, #b9f2c8 48%) !important;
   }
   /* keep anchored sections clear of the fixed nav */
   [id] {
@@ -93,6 +123,8 @@
     color: var(--sel-text);
   }
 }
+
+
 
 /* ──────────────────────────────────────────────
    Motion System & Navigation
@@ -179,13 +211,14 @@ body[data-scrolled] .site-nav {
   height: 100%;
 }
 .rail-base {
-  stroke: color-mix(in srgb, var(--color-rule) 180%, var(--color-ink));
-  opacity: 0.6;
+  stroke: var(--color-rule);
+  opacity: 1;
 }
 .rail-coral {
-  stroke: var(--color-accent);
-  stroke-dashoffset: 0;
-  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--color-accent) 80%, transparent));
+  stroke-dasharray: 1 !important;
+  stroke-dashoffset: calc(1 - var(--exp-progress, 0)) !important;
+  filter: drop-shadow(0 0 10px #6BDD92) drop-shadow(0 0 4px #E2FCEF);
+  transition: stroke-dashoffset 0.05s linear;
 }
 
 .exp-node {
@@ -227,9 +260,11 @@ body[data-scrolled] .site-nav {
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  body .rail-coral,
   body[data-motion] .rail-coral {
-    stroke-dashoffset: calc(1 - var(--exp-progress, 0));
-    transition: stroke-dashoffset 0.12s linear;
+    stroke-dasharray: 1 !important;
+    stroke-dashoffset: calc(1 - var(--exp-progress, 0)) !important;
+    transition: stroke-dashoffset 0.05s linear;
   }
   body[data-motion] .exp-node {
     --past: calc(var(--exp-progress, 0) - var(--at, 0));
@@ -318,100 +353,7 @@ body[data-scrolled] .site-nav {
   display: inline;
 }
 
-/* ──────────────────────────────────────────────
-   Theme Toggle Switch
-   ────────────────────────────────────────────── */
-.theme-toggle {
-  display: inline-flex;
-  border-radius: 9999px;
-  background: none;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-.theme-toggle:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 3px;
-}
-.tt-track {
-  position: relative;
-  display: block;
-  width: 56px;
-  height: 28px;
-  border-radius: 9999px;
-  background: var(--tt-track-bg);
-  border: 1px solid var(--color-rule);
-  transition: background 0.4s ease, border-color 0.4s ease;
-}
-.tt-thumb {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 22px;
-  height: 22px;
-  border-radius: 9999px;
-  background: var(--tt-thumb-bg);
-  box-shadow: var(--tt-thumb-shadow);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease, box-shadow 0.35s ease;
-}
-[data-theme-state='dark'] .tt-thumb {
-  transform: translateX(28px);
-}
-[data-theme-state='light'] .tt-thumb {
-  transform: translateX(0);
-}
-.tt-icon {
-  position: absolute;
-  top: 50%;
-  width: 14px;
-  height: 14px;
-  transform: translateY(-50%);
-  z-index: 2;
-  pointer-events: none;
-  transition: color 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
-}
-.tt-sun {
-  left: 6px;
-}
-.tt-moon {
-  right: 6px;
-}
-[data-theme-state='light'] .tt-sun,
-[data-theme-state='dark'] .tt-moon {
-  color: var(--color-accent);
-  opacity: 1;
-  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--color-accent) 65%, transparent));
-}
-[data-theme-state='light'] .tt-moon,
-[data-theme-state='dark'] .tt-sun {
-  color: var(--color-whisper);
-  opacity: 0.55;
-  filter: none;
-}
-.tt-track::after {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: 11px;
-  width: 4px;
-  height: 4px;
-  border-radius: 9999px;
-  background: var(--color-accent);
-  opacity: 0.95;
-  box-shadow: 0 0 6px color-mix(in srgb, var(--color-accent) 60%, transparent);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-[data-theme-state='dark'] .tt-track::after {
-  transform: translateX(28px);
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .tt-thumb,
-  .tt-track::after {
-    transition: none;
-  }
-}
 
 /* ──────────────────────────────────────────────
    Project Cards
@@ -852,30 +794,4 @@ body[data-scrolled] .site-nav {
   }
 }
 
-/* ──────────────────────────────────────────────
-   View Transitions — radial wipe on theme change
-   The new theme is revealed through a circle expanding from the toggle.
-   Coordinates + radius are set inline by ThemeToggle at click time.
-   Reduced-motion users never trigger the transition (plain swap instead),
-   so no animation override is needed here for them.
-   ────────────────────────────────────────────── */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
-}
-html.vt-wipe::view-transition-old(root) {
-  z-index: 1;
-}
-html.vt-wipe::view-transition-new(root) {
-  z-index: 2;
-  animation: vt-reveal 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-@keyframes vt-reveal {
-  from {
-    clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 0));
-  }
-  to {
-    clip-path: circle(var(--vt-r, 150vmax) at var(--vt-x, 50%) var(--vt-y, 0));
-  }
-}
+

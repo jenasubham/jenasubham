@@ -73,10 +73,6 @@ function readTriple(name: string, fallback: string): string {
   return (v || fallback).replace(/\s+/g, ',')
 }
 
-function isLight(): boolean {
-  return document.documentElement.getAttribute('data-theme') === 'light'
-}
-
 function scanImage(img: HTMLImageElement, size: number): RawParticle[] {
   const off = document.createElement('canvas')
   off.width = size
@@ -114,16 +110,15 @@ function scanImage(img: HTMLImageElement, size: number): RawParticle[] {
   return out
 }
 
-// derive glyph + alpha + accent from stored brightness, per the active theme
-function style(p: Particle, light: boolean) {
-  // "density" = how much ink this cell wants. Dark mode keys off brightness
-  // (light builds the face on black); light mode inverts (ink builds it on paper).
-  const v = light ? 1 - p.bright : p.bright
+// derive glyph + alpha + accent from stored brightness
+function style(p: Particle) {
+  // "density" = how much ink this cell wants. Dark mode keys off brightness.
+  const v = p.bright
   const idx = Math.floor(v * LAST)
   p.char = CHARS[idx]
   p.baseAlpha = 0.6 + v * 0.4
-  // coral only on the brightest highlights in dark mode; light mode stays ink
-  p.hot = !light && idx >= 8
+  // coral only on the brightest highlights
+  p.hot = idx >= 8
 }
 
 export default function AsciiPortrait() {
@@ -154,8 +149,7 @@ export default function AsciiPortrait() {
 
     const animate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
     let ink = readTriple('--ink-rgb', '232 226 213')
-    let accent = readTriple('--accent-rgb', '123 69 240')
-    let light = isLight()
+    let accent = readTriple('--accent-rgb', '185 242 200')
     let start = 0
     let raf = 0
     let visible = true
@@ -271,7 +265,7 @@ export default function AsciiPortrait() {
     }
 
     const restyle = () => {
-      for (const p of particlesRef.current) style(p, light)
+      for (const p of particlesRef.current) style(p)
       if (!raf) drawRest()
     }
 
@@ -292,7 +286,7 @@ export default function AsciiPortrait() {
           delay: Math.random() * 0.4,
           shimmer: Math.random() * Math.PI * 2,
         }
-        style(part, light)
+        style(part)
         return part
       })
       if (animate) startLoop()
@@ -314,14 +308,6 @@ export default function AsciiPortrait() {
       }
     }
 
-    // theme flip: re-read colours, re-map every glyph, repaint
-    const onThemeChange = () => {
-      ink = readTriple('--ink-rgb', '232 226 213')
-      accent = readTriple('--accent-rgb', '123 69 240')
-      light = isLight()
-      restyle()
-    }
-    window.addEventListener('themechange', onThemeChange)
 
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -371,7 +357,6 @@ export default function AsciiPortrait() {
       cancelled = true
       stopLoop()
       io.disconnect()
-      window.removeEventListener('themechange', onThemeChange)
       document.removeEventListener('visibilitychange', onVisibility)
       canvas.removeEventListener('mousemove', onMove)
       canvas.removeEventListener('mouseleave', onLeave)

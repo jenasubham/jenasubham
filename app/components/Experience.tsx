@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import { TracingBeam } from './ui/tracing-beam'
 
 type Role = {
   company: string
@@ -57,8 +58,8 @@ const ROLES: Role[] = [
 // node sits on the segment that runs past its height — RAIL_X is that segment's
 // x (in the 0–32 viewBox) per node, so the dot can be nudged onto the line.
 const RAIL_PATH =
-  'M16,0 L16,150 L10,180 L10,540 L22,570 L22,860 L16,890 L16,1000'
-const RAIL_X = [16, 10, 22]
+  'M16,0 L16,220 L10,250 L10,650 L22,680 L22,1000'
+const RAIL_X = [17, 11, 23]
 const VIEWBOX_W = 32
 const RAIL_PX = 40 // .exp-rail width — viewBox x maps to px at RAIL_PX / VIEWBOX_W
 
@@ -78,35 +79,10 @@ export default function Experience() {
         Where I&apos;ve <span className="italic text-accent">shipped.</span>
       </h2>
 
-      <div className="exp">
-        {/* the geometric line itself — purely decorative, drawn by CSS */}
-        <div className="exp-rail hidden md:block" aria-hidden>
-          <svg
-            className="exp-svg"
-            viewBox="0 0 32 1000"
-            preserveAspectRatio="none"
-            fill="none"
-          >
-            {/* circuit-trace route: vertical runs joined by short diagonal jogs */}
-            <path
-              className="rail-base"
-              d={RAIL_PATH}
-              strokeWidth={2.5}
-              vectorEffect="non-scaling-stroke"
-            />
-            <path
-              className="rail-coral"
-              d={RAIL_PATH}
-              strokeWidth={2.5}
-              vectorEffect="non-scaling-stroke"
-              pathLength={1}
-              strokeDasharray={1}
-            />
-          </svg>
-        </div>
-
-        {/* content rows — each role sits beside its node, on the same grid row */}
-        <div className="exp-rows grid grid-cols-1 md:grid-cols-[160px_1fr]">
+      <TracingBeam path={RAIL_PATH}>
+        <div className="exp">
+          {/* content rows — each role sits beside its node, on the same grid row */}
+          <div className="exp-rows grid grid-cols-1 md:grid-cols-[160px_1fr]">
           {ROLES.map((r, i) => (
             <div key={r.company} className="contents">
               {/* rail node, aligned to this role's heading */}
@@ -124,8 +100,8 @@ export default function Experience() {
                 }
                 aria-hidden
               >
-                <span className="exp-dot mt-[5px] h-3 w-3 shrink-0 rounded-full border-2" />
-                <span className="exp-num mt-[3px] font-mono text-[12px] font-semibold tracking-[0.1em]">
+                <span className="exp-dot mt-[4px] h-[12px] w-[12px] shrink-0 rounded-full border-2" />
+                <span className="exp-num mt-[2px] font-mono text-[14px] font-semibold tracking-[0.1em]">
                   0{i + 1}
                 </span>
               </div>
@@ -189,6 +165,7 @@ export default function Experience() {
           ))}
         </div>
       </div>
-    </section>
+    </TracingBeam>
+  </section>
   )
 }

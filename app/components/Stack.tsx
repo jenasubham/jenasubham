@@ -1,15 +1,6 @@
-// CAPABILITIES — "The Living Index". A calm capability index that plays like a
-// score as you scroll: each row strikes as it crosses the viewport — the title
-// rises in, the essence reveals, and a coral mastery-bar draws to its true
-// weight. The bar length is honest: it encodes how deep the work actually goes
-// (AI/ML, LLM, Realtime run full; Observability runs quiet), so the section is a
-// self-portrait, not a flat word-list. Depth still lives in a native <details>
-// (zero-JS, keyboard-accessible) and the tools stagger in like notes when opened.
-//
-// All motion is pure CSS scroll-driven animation (animation-timeline: view()) —
-// no JS, no IntersectionObserver, no listeners, nothing on the main thread.
-// Defaults are the finished, fully-visible state, so without JS / under
-// prefers-reduced-motion / on older browsers it reads as a complete index.
+'use client'
+
+import { useRef, useCallback, useEffect } from 'react'
 
 type Capability = {
   num: string
@@ -82,7 +73,78 @@ const CAPABILITIES: Capability[] = [
   },
 ]
 
+const FALLOFF_SMOOTH = (p: number) => p * p * (3 - 2 * p)
+
 export default function Stack() {
+  const listRef = useRef<HTMLDivElement>(null)
+  const itemRefs = useRef<(HTMLDetailsElement | null)[]>([])
+  const targetsRef = useRef<number[]>([])
+  const currentRef = useRef<number[]>([])
+  const rafRef = useRef<number | null>(null)
+  const lastRef = useRef<number>(0)
+
+  const proximityRadius = 220
+  const smoothing = 90 // ms for responsive, buttery smooth rAF interpolation
+
+  const runFrame = useCallback((now: number) => {
+    const dt = Math.min((now - lastRef.current) / 1000, 0.05)
+    lastRef.current = now
+    const tau = Math.max(smoothing, 1) / 1000
+    const k = 1 - Math.exp(-dt / tau)
+
+    let moving = false
+    const items = itemRefs.current
+    for (let i = 0; i < items.length; i++) {
+      const el = items[i]
+      if (!el) continue
+      const target = targetsRef.current[i] || 0
+      const cur = currentRef.current[i] || 0
+      const next = cur + (target - cur) * k
+      const settled = Math.abs(target - next) < 0.001
+      const value = settled ? target : next
+      currentRef.current[i] = value
+      el.style.setProperty('--effect', value.toFixed(4))
+      if (!settled) moving = true
+    }
+
+    rafRef.current = moving ? requestAnimationFrame(runFrame) : null
+  }, [])
+
+  const startLoop = useCallback(() => {
+    if (rafRef.current != null) return
+    lastRef.current = performance.now()
+    rafRef.current = requestAnimationFrame(runFrame)
+  }, [runFrame])
+
+  const handlePointerMove = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      const items = itemRefs.current
+      const pointerY = e.clientY
+      for (let i = 0; i < items.length; i++) {
+        const el = items[i]
+        if (!el) continue
+        const itemRect = el.getBoundingClientRect()
+        const center = itemRect.top + itemRect.height / 2
+        const distance = Math.abs(pointerY - center)
+        const rawProximity = Math.max(0, 1 - distance / proximityRadius)
+        targetsRef.current[i] = FALLOFF_SMOOTH(rawProximity)
+      }
+      startLoop()
+    },
+    [startLoop]
+  )
+
+  const handlePointerLeave = useCallback(() => {
+    targetsRef.current = targetsRef.current.map(() => 0)
+    startLoop()
+  }, [startLoop])
+
+  useEffect(() => {
+    return () => {
+      if (rafRef.current != null) cancelAnimationFrame(rafRef.current)
+    }
+  }, [])
+
   return (
     <section
       id="stack"
@@ -99,20 +161,32 @@ export default function Stack() {
         <span className="cap-underline italic text-accent">build with.</span>
       </h2>
 
-      <div className="cap-index">
+      <div
+        ref={listRef}
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
+        className="cap-index"
+      >
         {CAPABILITIES.map((cap, i) => (
           <details
             key={cap.title}
-            className={`stack-row group border-t border-rule ${
+            ref={(el) => {
+              itemRefs.current[i] = el
+            }}
+            className={`stack-row group border-t border-rule transition-colors ${
               i === 0 ? 'border-t-0' : ''
             }`}
+            style={{
+              transform: 'translateX(calc(var(--effect, 0) * 28px))',
+              willChange: 'transform',
+            }}
           >
             <summary className="flex cursor-pointer select-none items-baseline gap-5 py-7 list-none">
               <span className="font-mono text-[11px] tracking-[0.1em] text-whisper transition-colors duration-300 group-hover:text-accent">
                 {cap.num}
               </span>
               <span className="flex-1">
-                <span className="cap-title block font-serif text-[26px] font-normal leading-[1.1] tracking-[-0.01em] text-ink transition-colors duration-300 group-hover:text-accent md:text-[30px]">
+                <span className="cap-title block font-serif text-[26px] font-normal leading-[1.1] tracking-[-0.01em] text-heading transition-colors duration-300 group-hover:text-accent md:text-[30px]">
                   {cap.title}
                 </span>
                 <span className="cap-essence mt-1 block text-[14px] leading-[1.5] text-muted">

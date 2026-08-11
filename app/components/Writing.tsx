@@ -58,7 +58,7 @@ export default function Writing() {
               {p.num}
             </div>
             <h3
-              className={`font-serif font-normal leading-[1.2] tracking-[-0.01em] ${p.forthcoming ? 'text-muted' : ''}`}
+              className={`font-serif font-normal leading-[1.2] tracking-[-0.01em] ${p.forthcoming ? 'text-muted' : 'text-heading'}`}
               style={{ fontSize: 'clamp(24px, 3vw, 36px)' }}
             >
               {p.prefix}

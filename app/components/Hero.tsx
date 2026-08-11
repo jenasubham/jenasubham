@@ -24,10 +24,10 @@ export default function Hero() {
       <div className="hero-shrink flex flex-1 flex-col justify-center pb-2">
         {/* name — bold headline, tight leading, scaled to sit nicely in 100vh */}
         <h1
-          className="seq-name font-sans font-bold leading-[0.9] tracking-[-0.04em] text-ink"
+          className="seq-name font-sans font-bold leading-[0.9] tracking-[-0.04em]"
           style={{ fontSize: 'clamp(54px, 10.5vw, 155px)' }}
         >
-          Subham Jena<span className="text-accent">.</span>
+          <span className="text-accent">Subham Jena</span><span className="dot-white ml-4">.</span>
         </h1>
 
         {/* below the name: text on the left, interactive portrait anchored flush right */}
@@ -36,7 +36,7 @@ export default function Hero() {
             {/* tagline — high impact headline designed for CTOs & founders */}
             <div className="hero-parallax max-w-[820px]">
               <p
-                className="seq-tagline font-sans font-semibold leading-[1.08] tracking-[-0.02em] text-ink"
+                className="seq-tagline font-sans font-semibold leading-[1.08] tracking-[-0.02em] text-heading"
                 style={{ fontSize: 'clamp(24px, 3.6vw, 46px)' }}
               >
                 Engineering high-performance web apps & client-side intelligence.
@@ -47,7 +47,7 @@ export default function Hero() {
             <ul className="mt-8 grid max-w-[820px] grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-10">
               {SKILLS.map((s, i) => (
                 <li key={s.num} className={`group seq-skill-${i + 1}`}>
-                  <div className="font-mono text-[11px] tracking-[0.15em] text-whisper">
+                  <div className="font-mono text-[13px] font-semibold tracking-[0.15em] text-whisper">
                     {s.num}
                   </div>
                   <div className="mt-2 font-sans text-[15px] font-medium tracking-[-0.01em] text-ink">
@@ -90,7 +90,16 @@ export default function Hero() {
           </div>
 
           {/* interactive ASCII portrait — anchored flush to the bottom right */}
-          <div className="hidden justify-center lg:flex lg:items-end">
+          <div className="relative hidden justify-center lg:flex lg:items-end">
+            {/* Ambient radial glow behind ASCII portrait */}
+            <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
+              <div
+                className="h-[440px] w-[440px] rounded-full blur-3xl opacity-80"
+                style={{
+                  background: 'radial-gradient(circle, rgba(185, 242, 200, 0.12) 0%, rgba(185, 242, 200, 0.03) 45%, transparent 70%)',
+                }}
+              />
+            </div>
             <AsciiPortraitLazy />
           </div>
         </div>

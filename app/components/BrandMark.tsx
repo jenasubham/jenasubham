@@ -10,7 +10,7 @@
  * viewBox is a fixed 32-unit grid; pass the rendered pixel `size`.
  */
 
-const CORAL = '#FF6B47'
+const CORAL = '#B9F2C8'
 
 export default function BrandMark({ size }: { size: number }) {
   return (

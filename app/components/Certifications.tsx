@@ -76,7 +76,7 @@ export default function Certifications() {
                 <p className="cert-issuer font-mono text-[11px] uppercase tracking-[0.2em] text-muted transition-colors duration-300 group-hover:text-accent">
                   {c.issuer}
                 </p>
-                <h3 className="cert-title mt-2 font-serif text-[26px] font-normal leading-[1.15] tracking-[-0.01em] text-ink transition-colors duration-300 group-hover:text-accent md:text-[28px]">
+                <h3 className="cert-title mt-2 font-serif text-[26px] font-normal leading-[1.15] tracking-[-0.01em] text-heading transition-colors duration-300 group-hover:text-accent md:text-[28px]">
                   {c.title}
                 </h3>
                 <p className="cert-meta mt-4 font-mono text-[11px] tracking-[0.06em] text-muted">

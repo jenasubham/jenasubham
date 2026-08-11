@@ -31,10 +31,10 @@ export default function Footer() {
   return (
     <footer id="contact" className="mx-auto max-w-[1100px] border-t border-rule px-6 pb-16 pt-32 md:px-12 md:pb-20 md:pt-36">
       <p
-        className="mb-20 max-w-[900px] font-serif font-light italic leading-[1.15] tracking-[-0.02em]"
-        style={{ fontSize: 'clamp(36px, 5vw, 64px)' }}
+        className="mb-20 max-w-[900px] font-serif font-light italic leading-[1.15] tracking-[-0.02em] text-heading"
+        style={{ fontSize: 'clamp(28px, 4vw, 50px)' }}
       >
-        I&apos;m focused on high-performance frontend architecture — direct cloud uploads, client-side intelligence, and <span className="text-accent">responsive web interfaces</span> that feel instant.
+        I&apos;m focused on high-performance frontend architecture - direct cloud uploads, client-side intelligence, and <span className="text-accent">responsive web interfaces</span> that feel instant.
       </p>
 
       <div className="grid grid-cols-2 gap-8 border-t border-rule pt-12 md:grid-cols-4">

@@ -19,32 +19,32 @@ export default async function OG() {
         style={{
           width: '100%',
           height: '100%',
-          background: '#050505',
-          padding: '80px',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          fontFamily: 'Geist',
+          background: '#131217',
+          padding: '80px 100px',
+          color: '#E8E2D5',
+          fontFamily: 'Geist Sans',
         }}
       >
-        {/* top bar */}
+        {/* top header: location + brand */}
         <div
           style={{
             display: 'flex',
-            justifyContent: 'space-between',
             alignItems: 'center',
-            fontSize: 18,
+            justifyContent: 'space-between',
+            fontSize: 22,
             letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            color: 'rgba(232, 226, 213, 0.6)',
+            color: '#B9F2C8',
             fontFamily: 'Geist Mono',
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            <div style={{ width: 10, height: 10, borderRadius: 999, background: '#FF6B47' }} />
+            <div style={{ width: 10, height: 10, borderRadius: 999, background: '#B9F2C8' }} />
             NEW DELHI, INDIA
           </div>
-          <div style={{ color: '#FF6B47' }}>JENASUBHAM</div>
+          <div style={{ color: '#B9F2C8' }}>JENASUBHAM</div>
         </div>
 
         {/* name + tagline */}
@@ -54,12 +54,12 @@ export default async function OG() {
               fontSize: 160,
               lineHeight: 0.9,
               letterSpacing: '-0.04em',
-              color: '#E8E2D5',
+              color: '#FFFFFF',
               fontWeight: 700,
               display: 'flex',
             }}
           >
-            Subham Jena<span style={{ color: '#FF6B47' }}>.</span>
+            Subham Jena<span style={{ color: '#B9F2C8' }}>.</span>
           </div>
           <div
             style={{

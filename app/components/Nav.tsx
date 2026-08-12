@@ -15,9 +15,7 @@ export default function Nav() {
         >
           Subham Jena<span className="text-accent">.</span>
         </a>
-        {/* trailing space reserves room for the fixed ThemeToggle that overlays
-            the nav's right edge, so the last link never sits under it */}
-        <ul className="flex items-center gap-7 pr-[74px] md:gap-9 md:pr-[78px]">
+        <ul className="flex items-center gap-7 md:gap-9">
           {LINKS.map((l) => (
             <li key={l.href}>
               <a

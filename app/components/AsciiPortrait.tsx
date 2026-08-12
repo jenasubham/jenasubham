@@ -369,7 +369,7 @@ export default function AsciiPortrait() {
   return (
     <canvas
       ref={canvasRef}
-      aria-label="Interactive ASCII portrait of Om Sharma"
+      aria-label="Interactive ASCII portrait of Subham Jena"
       role="img"
       style={{
         width: `${dim}px`,

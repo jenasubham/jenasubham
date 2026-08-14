@@ -22,8 +22,8 @@ export default function Footer() {
     {
       label: 'Location',
       items: [
-        { text: 'New Delhi, India', href: '#' },
-        { text: 'UTC+5:30', href: '#' },
+        { text: 'New Delhi, India' },
+        { text: 'UTC+5:30' },
       ],
     },
   ]
@@ -43,17 +43,26 @@ export default function Footer() {
             <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
               {col.label}
             </p>
-            {col.items.map((item) => (
-              <a
-                key={item.text}
-                href={item.href}
-                target={item.href.startsWith('http') || item.newTab ? '_blank' : undefined}
-                rel={item.href.startsWith('http') || item.newTab ? 'noopener noreferrer' : undefined}
-                className="block py-1 text-[14px] text-ink transition-colors duration-200 hover:text-accent"
-              >
-                {item.text}
-              </a>
-            ))}
+            {col.items.map((item) =>
+              'href' in item && item.href ? (
+                <a
+                  key={item.text}
+                  href={item.href}
+                  target={item.href.startsWith('http') || ('newTab' in item && item.newTab) ? '_blank' : undefined}
+                  rel={item.href.startsWith('http') || ('newTab' in item && item.newTab) ? 'noopener noreferrer' : undefined}
+                  className="block py-1 text-[14px] text-ink transition-colors duration-200 hover:text-accent"
+                >
+                  {item.text}
+                </a>
+              ) : (
+                <span
+                  key={item.text}
+                  className="block py-1 text-[14px] text-ink"
+                >
+                  {item.text}
+                </span>
+              )
+            )}
           </div>
         ))}
       </div>

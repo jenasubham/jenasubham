@@ -8,9 +8,10 @@ const LINKS = [
 export default function Nav() {
   return (
     <header className="site-nav fixed inset-x-0 top-0 z-50">
-      <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 md:px-12">
+      <nav aria-label="Main navigation" className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 md:px-12">
         <a
           href="#top"
+          aria-label="Subham Jena - Back to top"
           className="font-sans text-[15px] font-semibold tracking-[-0.01em] text-ink"
         >
           Subham Jena<span className="text-accent">.</span>

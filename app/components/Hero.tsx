@@ -15,7 +15,7 @@ export default function Hero() {
       {/* status bar */}
       <div className="seq-status flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
         <span className="flex items-center gap-2">
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+          <span aria-hidden="true" className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
           New Delhi, India
         </span>
       </div>
@@ -71,7 +71,7 @@ export default function Hero() {
                 className="group inline-flex items-center gap-3 rounded-sm border border-rule px-6 py-3 font-mono text-[12px] uppercase tracking-[0.15em] text-ink transition-colors duration-300 hover:border-ink/40"
               >
                 View Work
-                <span className="inline-block transition-transform duration-300 ease-out group-hover:translate-x-1 text-accent">
+                <span aria-hidden="true" className="inline-block transition-transform duration-300 ease-out group-hover:translate-x-1 text-accent">
                   &rarr;
                 </span>
               </a>
@@ -82,7 +82,7 @@ export default function Hero() {
                 className="group inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.15em] text-muted transition-colors duration-300 hover:text-ink"
               >
                 View Resume
-                <span className="inline-block transition-transform duration-300 ease-out group-hover:translate-x-0.5">
+                <span aria-hidden="true" className="inline-block transition-transform duration-300 ease-out group-hover:translate-x-0.5">
                   ↗
                 </span>
               </a>

@@ -1,9 +1,9 @@
 export default function Bio() {
   return (
     <section id="about" className="mx-auto max-w-[920px] border-t border-rule px-6 py-32 md:px-12 md:py-36">
-      <p className="mb-6 font-mono text-[13px] font-semibold uppercase tracking-[0.25em] text-accent">
+      <h2 className="mb-6 font-mono text-[13px] font-semibold uppercase tracking-[0.25em] text-accent">
         § 1 — Introduction
-      </p>
+      </h2>
 
       <div className="font-serif text-[24px] leading-[1.6] text-heading">
         <p className="mb-6 first:first-letter:float-left first:first-letter:mr-3 first:first-letter:mt-2 first:first-letter:font-serif first:first-letter:text-[85px] first:first-letter:font-normal first:first-letter:italic first:first-letter:leading-[0.85] first:first-letter:text-accent">

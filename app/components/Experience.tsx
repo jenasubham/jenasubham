@@ -98,7 +98,7 @@ export default function Experience() {
                     '--dot-shift': `${(((RAIL_X[i] ?? 16) - 16) * RAIL_PX) / VIEWBOX_W}px`,
                   } as CSSProperties
                 }
-                aria-hidden
+                aria-hidden="true"
               >
                 <span className="exp-dot mt-[4px] h-[12px] w-[12px] shrink-0 rounded-full border-2" />
                 <span className="exp-num mt-[2px] font-mono text-[14px] font-semibold tracking-[0.1em]">
@@ -144,7 +144,7 @@ export default function Experience() {
                   <summary className="exp-summary inline-flex cursor-pointer select-none items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
                     <span className="exp-summary-show">View details</span>
                     <span className="exp-summary-hide">Hide details</span>
-                    <span className="exp-summary-mark" aria-hidden>
+                    <span className="exp-summary-mark" aria-hidden="true">
                       ↓
                     </span>
                   </summary>
@@ -154,7 +154,7 @@ export default function Experience() {
                         key={j}
                         className="exp-bullet grid grid-cols-[16px_1fr] gap-3 text-[15px] leading-[1.55] text-ink/70 md:text-[16px]"
                       >
-                        <span className="pt-[6px] font-mono text-[10px] text-muted">→</span>
+                        <span aria-hidden="true" className="pt-[6px] font-mono text-[10px] text-muted">→</span>
                         <span>{b}</span>
                       </li>
                     ))}

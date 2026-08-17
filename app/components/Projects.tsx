@@ -4,7 +4,7 @@ export default function Projects() {
   return (
     <section id="work" className="mx-auto max-w-[1100px] border-t border-rule px-6 py-32 md:px-12 md:py-36">
       <p className="mb-6 font-mono text-[13px] font-semibold uppercase tracking-[0.25em] text-accent">
-        § 5 — Projects & Featured Work
+        § 4 — Projects & Featured Work
       </p>
       <h2
         className="mb-16 font-serif font-light leading-[0.95] tracking-[-0.03em]"
@@ -25,7 +25,7 @@ export default function Projects() {
           <div className="relative z-10">
             <p className="proj-tag-dark flex items-center gap-3 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]">
               <span
-                aria-hidden
+                aria-hidden="true"
                 className="proj-dot--live inline-block h-2 w-2 mr-1 rounded-full bg-[#050505]"
               />
               Now · Ongoing Project

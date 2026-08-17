@@ -194,7 +194,7 @@ export default function Stack() {
                 </span>
                 {/* mastery-bar — honest depth, drawn on entry. Ghost track shows
                     the full scale; the coral fill scales to this capability's weight. */}
-                <span className="cap-bar-track" aria-hidden>
+                <span className="cap-bar-track" aria-hidden="true">
                   <span
                     className="cap-bar"
                     style={{ ['--w' as string]: cap.weight }}
@@ -205,7 +205,7 @@ export default function Stack() {
                   fade-to-nothing is the universal "there's more here" signal.
                   Desktop only; fades out on open so it doesn't duplicate the list. */}
               <span
-                aria-hidden
+                aria-hidden="true"
                 className="cap-peek hidden font-mono text-[11px] tracking-[0.08em] text-whisper transition-opacity duration-300 group-open:opacity-0 md:block"
               >
                 {cap.tools.slice(0, 3).join('  ·  ')}
@@ -215,7 +215,7 @@ export default function Stack() {
               <span className="cap-count inline-flex items-baseline gap-1.5 whitespace-nowrap font-mono text-[11px] tracking-[0.1em] text-muted transition-colors duration-300 group-hover:text-accent">
                 <span>{cap.tools.length} tools</span>
                 <span
-                  aria-hidden
+                  aria-hidden="true"
                   className="cap-arrow transition-transform duration-300 group-open:rotate-90"
                 >
                   →

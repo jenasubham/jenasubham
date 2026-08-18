@@ -148,8 +148,8 @@ export default function AsciiPortrait() {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
     const animate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    let ink = readTriple('--ink-rgb', '232 226 213')
-    let accent = readTriple('--accent-rgb', '185 242 200')
+    const ink = readTriple('--ink-rgb', '232 226 213')
+    const accent = readTriple('--accent-rgb', '185 242 200')
     let start = 0
     let raf = 0
     let visible = true
@@ -262,11 +262,6 @@ export default function AsciiPortrait() {
     function stopLoop() {
       cancelAnimationFrame(raf)
       raf = 0
-    }
-
-    const restyle = () => {
-      for (const p of particlesRef.current) style(p)
-      if (!raf) drawRest()
     }
 
     const ready = (raw: RawParticle[]) => {

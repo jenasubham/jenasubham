@@ -85,6 +85,7 @@ export default function Stack() {
 
   const proximityRadius = 220
   const smoothing = 90 // ms for responsive, buttery smooth rAF interpolation
+  const runFrameRef = useRef<(now: number) => void>(() => {})
 
   const runFrame = useCallback((now: number) => {
     const dt = Math.min((now - lastRef.current) / 1000, 0.05)
@@ -107,14 +108,18 @@ export default function Stack() {
       if (!settled) moving = true
     }
 
-    rafRef.current = moving ? requestAnimationFrame(runFrame) : null
+    rafRef.current = moving ? requestAnimationFrame(runFrameRef.current) : null
   }, [])
+
+  useEffect(() => {
+    runFrameRef.current = runFrame
+  }, [runFrame])
 
   const startLoop = useCallback(() => {
     if (rafRef.current != null) return
     lastRef.current = performance.now()
-    rafRef.current = requestAnimationFrame(runFrame)
-  }, [runFrame])
+    rafRef.current = requestAnimationFrame(runFrameRef.current)
+  }, [])
 
   const handlePointerMove = useCallback(
     (e: React.PointerEvent<HTMLDivElement>) => {

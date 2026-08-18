@@ -1,5 +1,3 @@
-import type { CSSProperties } from 'react'
-
 // CERTIFICATIONS — "The Constellation". Each credential is a star on a horizontal
 // coral rail. As the section scrolls into view the rail draws left-to-right and
 // the nodes ignite in sequence — a lit dot fills coral and casts the same

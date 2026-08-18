@@ -4,37 +4,15 @@ import { useEffect } from 'react'
 
 /**
  * The site's entire scroll-driven motion runs through this one component.
- * It renders nothing — it only sets CSS custom properties on <html> and
- * data-attributes on <body>; the actual transforms/transitions live in
- * globals.css. One rAF-throttled scroll listener, so the main thread stays
- * quiet.
- *
- *   --hero           0 → 1   across the first viewport (drives hero shrink)
- *   --scroll         raw scrollY in px (drives tagline parallax)
- *   --page-progress  0 → 1   across the whole document (drives accent fade + indicator)
- *   --exp-progress   0 → 1   across the experience section (draws the timeline rail)
- *   --color-accent   accent → ink, interpolated by page-progress
- *   data-scrolled    present once scrolled past ~10px (nav gets its blur)
- *   data-nav         present once past 60% of the hero (nav slides in)
- *   data-motion      present once JS motion is live (CSS switches static → dynamic)
+ * It sets CSS custom properties on <html> and data-attributes on <body>;
+ * the actual transforms/transitions live in globals.css.
  */
-
 export default function MotionLayer() {
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const root = document.documentElement
     const body = document.body
     const expEl = document.getElementById('experience')
-
-    // read a "r g b" custom-property triple off <html>; fall back to the dark palette
-    const readTriple = (name: string, fallback: number[]) => {
-      const raw = getComputedStyle(root).getPropertyValue(name).trim()
-      const parts = raw.split(/[\s,]+/).map(Number).filter((n) => !Number.isNaN(n))
-      return parts.length === 3 ? parts : fallback
-    }
-
-    const accent = readTriple('--accent-rgb', [185, 242, 200])
-    const ink = readTriple('--ink-rgb', [232, 226, 213])
 
     let ticking = false
 
@@ -51,8 +29,6 @@ export default function MotionLayer() {
       root.style.setProperty('--hero', hero.toFixed(4))
       root.style.setProperty('--page-progress', page.toFixed(4))
 
-      // experience timeline: 0 as the section top reaches ~70% of the viewport,
-      // 1 as its bottom passes the same line — drives the rail draw + node glow
       if (expEl) {
         const rect = expEl.getBoundingClientRect()
         const exp = Math.min(1, Math.max(0, (vh * 0.7 - rect.top) / rect.height))
@@ -72,12 +48,10 @@ export default function MotionLayer() {
       requestAnimationFrame(apply)
     }
 
-    apply() // set initial state (covers reloads at a scrolled position)
-
-
+    apply()
 
     if (!reduce) {
-      body.setAttribute('data-motion', '') // CSS switches the rail from static to scroll-driven
+      body.setAttribute('data-motion', '')
       window.addEventListener('scroll', onScroll, { passive: true })
       window.addEventListener('resize', onScroll, { passive: true })
     }
@@ -90,6 +64,5 @@ export default function MotionLayer() {
     }
   }, [])
 
-  // No visible output — this component only drives scroll state via CSS vars.
   return null
 }

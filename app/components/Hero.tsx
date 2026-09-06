@@ -28,6 +28,7 @@ export default function Hero() {
           style={{ fontSize: 'clamp(54px, 10.5vw, 155px)' }}
         >
           <span className="text-accent">Subham Jena</span><span className="dot-white ml-4">.</span>
+          <span className="sr-only"> — Frontend Software Engineer in New Delhi, India</span>
         </h1>
 
         {/* below the name: text on the left, interactive portrait anchored flush right */}
@@ -35,12 +36,12 @@ export default function Hero() {
           <div className="pb-1">
             {/* tagline — high impact headline designed for CTOs & founders */}
             <div className="hero-parallax max-w-[820px]">
-              <p
+              <h2
                 className="seq-tagline font-sans font-semibold leading-[1.08] tracking-[-0.02em] text-heading"
                 style={{ fontSize: 'clamp(24px, 3.6vw, 46px)' }}
               >
                 Engineering high-performance web apps & client-side intelligence.
-              </p>
+              </h2>
             </div>
 
             {/* skill row */}
@@ -61,7 +62,7 @@ export default function Hero() {
 
             {/* paragraph */}
             <p className="seq-para mt-6 max-w-[500px] text-[15px] leading-[1.65] text-muted">
-              Sole frontend engineer at a product startup - driving enterprise architecture, direct cloud pipelines, and on-device ML detection that eliminates network latency.
+              Sole frontend engineer at a product startup — driving enterprise architecture, direct cloud pipelines, and on-device ML detection that eliminates network latency.
             </p>
 
             {/* CTAs */}

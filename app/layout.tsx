@@ -75,42 +75,145 @@ export const viewport: Viewport = {
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'ProfilePage',
-  mainEntity: {
-    '@type': 'Person',
-    name: 'Subham Jena',
-    alternateName: 'Subham Jena',
-    jobTitle: 'Frontend Software Engineer',
-    description:
-      'Frontend Engineer building responsive, high-performance web applications, direct cloud pipelines, and on-device ML detection.',
-    url: 'https://jenasubham.vercel.app',
-    image: 'https://jenasubham.vercel.app/profile.png',
-    sameAs: [
-      'https://github.com/jenasubham',
-      'https://linkedin.com/in/jenasubham',
-    ],
-    worksFor: {
-      '@type': 'Organization',
-      name: 'PrudentBit',
+  '@graph': [
+    {
+      '@type': 'ProfilePage',
+      '@id': 'https://jenasubham.vercel.app/#profilepage',
+      url: 'https://jenasubham.vercel.app',
+      name: 'Subham Jena · Frontend Software Engineer Portfolio',
+      mainEntity: {
+        '@id': 'https://jenasubham.vercel.app/#person',
+      },
+      hasPart: [
+        { '@id': 'https://github.com/jenasubham/careerplus' },
+        { '@id': 'https://jenasubham.vercel.app/#finance-tracker' },
+        { '@id': 'https://jenasubham.vercel.app/#immunefiles' },
+        { '@id': 'https://github.com/jenasubham/portfolio' },
+      ],
     },
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'New Delhi',
-      addressCountry: 'India',
+    {
+      '@type': 'Person',
+      '@id': 'https://jenasubham.vercel.app/#person',
+      name: 'Subham Jena',
+      alternateName: 'Subham Jena',
+      jobTitle: 'Frontend Software Engineer',
+      description:
+        'Frontend Engineer building responsive, high-performance web applications, direct cloud pipelines, and on-device ML detection.',
+      url: 'https://jenasubham.vercel.app',
+      image: 'https://jenasubham.vercel.app/profile.png',
+      sameAs: [
+        'https://github.com/jenasubham',
+        'https://linkedin.com/in/jenasubham',
+      ],
+      worksFor: {
+        '@type': 'Organization',
+        name: 'PrudentBit',
+      },
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'New Delhi',
+        addressCountry: 'India',
+      },
+      knowsAbout: [
+        'Frontend Architecture',
+        'Next.js',
+        'React.js',
+        'TypeScript',
+        'Tailwind CSS',
+        'Redux Toolkit',
+        'Direct-to-Cloud Uploads',
+        'Client-side ML Inference',
+        'Node.js',
+        'REST APIs',
+      ],
     },
-    knowsAbout: [
-      'Frontend Architecture',
-      'Next.js',
-      'React.js',
-      'TypeScript',
-      'Tailwind CSS',
-      'Redux Toolkit',
-      'Direct-to-Cloud Uploads',
-      'Client-side ML Inference',
-      'Node.js',
-      'REST APIs',
-    ],
-  },
+    {
+      '@type': 'SoftwareSourceCode',
+      '@id': 'https://github.com/jenasubham/careerplus',
+      name: 'CareerPlus — Full-Stack MERN Job Portal',
+      description:
+        'Full-stack MERN job portal featuring JWT authentication, role-based access for job seekers and employers, Redux Toolkit state management, custom React hooks for dynamic job filtering, admin dashboard, and file upload support via Multer. Built with React.js, Express, MongoDB Atlas, Tailwind CSS, and ShadCN UI.',
+      codeRepository: 'https://github.com/jenasubham/careerplus',
+      programmingLanguage: ['JavaScript', 'TypeScript', 'React', 'Node.js'],
+      runtimePlatform: 'Node.js, Express, MongoDB Atlas',
+      author: {
+        '@id': 'https://jenasubham.vercel.app/#person',
+      },
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': 'https://jenasubham.vercel.app/#finance-tracker',
+      name: 'Personal Finance Tracker',
+      description:
+        'Mobile-first PWA built solo end-to-end for tracking daily expenses & spending patterns. Features Firebase Auth, Firestore transaction history, Android Web Share Target for auto-parsing UPI receipts from PhonePe & Paytm, category breakdowns, and Recharts analytics.',
+      applicationCategory: 'FinanceApplication',
+      operatingSystem: 'Android, iOS, Web',
+      author: {
+        '@id': 'https://jenasubham.vercel.app/#person',
+      },
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': 'https://jenasubham.vercel.app/#immunefiles',
+      name: 'Immunefiles & Immuneshare',
+      description:
+        'Enterprise secure file-sharing products featuring client-side direct-to-Azure SAS uploads (~64% bandwidth savings), on-device ML proctored sharing (EfficientDet-Lite0), and custom document redaction.',
+      applicationCategory: 'SecurityApplication',
+      operatingSystem: 'Web',
+      author: {
+        '@id': 'https://jenasubham.vercel.app/#person',
+      },
+    },
+    {
+      '@type': 'SoftwareSourceCode',
+      '@id': 'https://github.com/jenasubham/portfolio',
+      name: 'Personal Portfolio Website',
+      description:
+        'Personal developer portfolio built with Next.js 16 App Router, React 19, TypeScript, and Tailwind CSS v4. Features responsive design tokens, zero-JS motion fallbacks, and interactive canvas ASCII art.',
+      codeRepository: 'https://github.com/jenasubham/portfolio',
+      programmingLanguage: ['TypeScript', 'React', 'Tailwind CSS'],
+      runtimePlatform: 'Next.js 16, Vercel',
+      author: {
+        '@id': 'https://jenasubham.vercel.app/#person',
+      },
+    },
+    {
+      '@type': 'ItemList',
+      '@id': 'https://jenasubham.vercel.app/#featured-projects',
+      name: 'Featured Software Projects by Subham Jena',
+      description: 'Key software engineering projects and applications developed by Subham Jena.',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          item: {
+            '@id': 'https://github.com/jenasubham/careerplus',
+          },
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          item: {
+            '@id': 'https://jenasubham.vercel.app/#finance-tracker',
+          },
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          item: {
+            '@id': 'https://jenasubham.vercel.app/#immunefiles',
+          },
+        },
+        {
+          '@type': 'ListItem',
+          position: 4,
+          item: {
+            '@id': 'https://github.com/jenasubham/portfolio',
+          },
+        },
+      ],
+    },
+  ],
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

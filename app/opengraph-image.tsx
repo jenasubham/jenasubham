@@ -1,16 +1,27 @@
 import { ImageResponse } from 'next/og'
-import { readFile } from 'node:fs/promises'
-import { join } from 'node:path'
 
-export const alt = 'Subham Jena — Frontend Engineer building responsive web applications'
+export const alt = 'Subham Jena — Frontend Software Engineer building responsive web applications'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
+/**
+ * URL-based font loader for Next.js OpenGraph image generation.
+ * Fetches fonts over HTTPS to ensure 100% compatibility across
+ * all edge and serverless runtime regions without filesystem dependencies.
+ */
+async function fetchFont(url: string): Promise<ArrayBuffer> {
+  const res = await fetch(url)
+  if (!res.ok) {
+    throw new Error(`Failed to fetch font from ${url}: ${res.statusText}`)
+  }
+  return await res.arrayBuffer()
+}
+
 export default async function OG() {
   const [geistBold, geistSemiBold, geistMono] = await Promise.all([
-    readFile(join(process.cwd(), 'node_modules/geist/dist/fonts/geist-sans/Geist-Bold.ttf')),
-    readFile(join(process.cwd(), 'node_modules/geist/dist/fonts/geist-sans/Geist-SemiBold.ttf')),
-    readFile(join(process.cwd(), 'node_modules/geist/dist/fonts/geist-mono/GeistMono-Regular.ttf')),
+    fetchFont('https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/Geist-Bold.ttf'),
+    fetchFont('https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/Geist-SemiBold.ttf'),
+    fetchFont('https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-mono/GeistMono-Regular.ttf'),
   ])
 
   return new ImageResponse(
@@ -25,7 +36,7 @@ export default async function OG() {
           background: '#131217',
           padding: '80px 100px',
           color: '#E8E2D5',
-          fontFamily: 'Geist Sans',
+          fontFamily: 'Geist',
         }}
       >
         {/* top header: location + brand */}

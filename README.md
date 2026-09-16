@@ -1,72 +1,33 @@
-# ⚡ Subham Jena — Frontend Software Engineer Portfolio
+# Hi, I'm Subham Jena 👋
 
-An obsidian dark-mode, high-performance developer portfolio built with **Next.js 16 (App Router)**, **React 19**, **TypeScript**, and **Tailwind CSS v4**.
+**Frontend Software Engineer** based in New Delhi, India.  
+I build high-performance web applications, resilient client architecture, and latency-free on-device ML experiences.
 
-Designed with editorial typography, smooth 60fps rAF scroll interpolation, custom 3D card tilt physics, and zero heavy animation dependencies.
-
----
-
-## 🛠️ Tech Stack
-
-- **Framework**: Next.js 16 (App Router)
-- **UI Library**: React 19
-- **Styling**: Tailwind CSS v4 (Vanilla CSS Custom Properties & Design Tokens)
-- **Typography**: Cormorant Garamond, Geist Sans, Geist Mono
-- **Analytics**: Vercel Analytics (`@vercel/analytics`)
-- **Deployment**: Vercel
+🌐 **Portfolio:** [jenasubham.vercel.app](https://jenasubham.vercel.app)  
+📄 **Resume:** [View Resume](https://jenasubham.vercel.app/Subham_Jena_Resume.pdf)  
+💼 **LinkedIn:** [linkedin.com/in/jenasubham](https://linkedin.com/in/jenasubham)  
 
 ---
 
-## ✨ Key Features & Architecture Highlights
+### 👨‍💻 What I'm Doing
 
-1. **Obsidian Dark Mode Design System**: Locked-in dark aesthetic with curated `#131217` obsidian background and `#B9F2C8` mint accent highlights.
-2. **Interactive ASCII Canvas Portrait**: Real-time canvas particle simulation with mouse distance physics and ambient radial depth.
-3. **TracingBeam Experience Timeline**: Dynamic SVG path tracking with custom diagonal circuit jogs and dead-centered experience nodes.
-4. **Capabilities Proximity Wave Animation**: Custom JS `requestAnimationFrame` lerp loop applying exponential proximity falloff across capability items.
-5. **Interactive 3D Tilt Cards**: Custom `<TiltCard>` component with perspective rotation (`rotateX`, `rotateY`) and radial cursor specular glare overlay.
-6. **Zero-Lag Motion System**: Throttled scroll state machine updating CSS variables directly on `<html>` for optimal main-thread performance.
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- **Node.js**: `v18.x` or higher
-- **Package Manager**: `npm`
-
-### Installation & Local Development
-
-```bash
-# Clone the repository
-git clone https://github.com/jenasubham/portfolio.git
-
-# Navigate into project directory
-cd portfolio
-
-# Install dependencies
-npm install
-
-# Run dev server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to view the portfolio.
+- 🏢 **Frontend Engineer at [PrudentBit](https://prudentbit.com)**: Leading frontend architecture for enterprise security products like **Immunefiles** and **Immuneshare**.
+  - Engineered direct-to-Azure SAS uploads, eliminating backend bottlenecks and cutting bandwidth by **~64%**.
+  - Migrated proctored-sharing detection client-side using **EfficientDet-Lite0**, eliminating server inference costs and latency.
+  - Built granular client-side document redaction tools for sensitive file sharing.
+- 🚀 **Building Full-Stack Products**: Developing scalable web apps with Next.js, React, TypeScript, and modern state architectures.
 
 ---
 
-## 📦 Production Build
+### 🛠️ Technical Capabilities
 
-```bash
-# Create an optimized production build
-npm run build
-
-# Preview production build locally
-npm run start
-```
+- **Languages:** TypeScript, JavaScript (ES6+), HTML5, CSS3, SQL, Python
+- **Frontend & Frameworks:** React.js, Next.js (App Router), Tailwind CSS, Redux Toolkit, Framer Motion, Vite
+- **Backend & Cloud:** Node.js, Express.js, MongoDB Atlas, Azure Blob Storage, Firebase, REST APIs, JWT
+- **Performance & ML:** Client-Side ML (EfficientDet-Lite0), Core Web Vitals, Direct Cloud Uploads, Bundle Optimization
 
 ---
 
-## 📄 License
-
-MIT © [Subham Jena](https://github.com/jenasubham)
+<p align="center">
+  <sub>Designed & built by Subham Jena · <a href="https://jenasubham.vercel.app">jenasubham.vercel.app</a></sub>
+</p>

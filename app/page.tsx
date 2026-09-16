@@ -1,11 +1,13 @@
-import Nav from './components/Nav'
-import MotionLayer from './components/MotionLayer'
-import Hero from './components/Hero'
-import Bio from './components/Bio'
-import Experience from './components/Experience'
-import Stack from './components/Stack'
-import Projects from './components/Projects'
-import Footer from './components/Footer'
+import {
+  Nav,
+  MotionLayer,
+  Hero,
+  Bio,
+  Experience,
+  Stack,
+  Projects,
+  Footer,
+} from './components'
 
 export default function Home() {
   return (

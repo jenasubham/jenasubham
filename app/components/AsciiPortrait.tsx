@@ -59,11 +59,19 @@ const rawCache = new Map<number, RawParticle[]>()
 
 const FONT = 6
 
-// kept small enough to clear the text column at each breakpoint (lg+ only)
+function fontForSize(sz: number) {
+  if (sz <= 180) return 4.2
+  if (sz <= 280) return 5.0
+  return FONT
+}
+
+// kept small enough to clear the text column at each breakpoint
 function sizeFor(width: number) {
   if (width >= 1536) return 480
   if (width >= 1280) return 430
-  return 380
+  if (width >= 1024) return 380
+  if (width >= 640) return 240
+  return 155
 }
 
 // read a "r g b" theme triple, comma-joined for rgba()
@@ -92,8 +100,9 @@ function scanImage(img: HTMLImageElement, size: number): RawParticle[] {
   ctx.drawImage(img, (size - w) / 2, size - h, w, h)
 
   const px = ctx.getImageData(0, 0, size, size).data
-  const colGap = FONT * 0.62
-  const rowGap = FONT * 1.0
+  const font = fontForSize(size)
+  const colGap = font * 0.62
+  const rowGap = font * 1.0
 
   const out: RawParticle[] = []
   for (let y = 0; y < size; y += rowGap) {
@@ -156,7 +165,8 @@ export default function AsciiPortrait() {
     let cancelled = false
 
     const setType = () => {
-      ctx.font = `${FONT}px ui-monospace, monospace`
+      const font = fontForSize(size)
+      ctx.font = `${font}px ui-monospace, monospace`
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
     }
@@ -250,9 +260,10 @@ export default function AsciiPortrait() {
       if (raf || !visible) return
       if (animate) {
         // re-scatter so the face re-assembles each time it enters the viewport
+        const scatter = size * 0.8
         for (const p of particlesRef.current) {
-          p.x = p.targetX + (Math.random() - 0.5) * 380
-          p.y = p.targetY + (Math.random() - 0.5) * 380
+          p.x = p.targetX + (Math.random() - 0.5) * scatter
+          p.y = p.targetY + (Math.random() - 0.5) * scatter
           p.vx = p.vy = 0
         }
       }
@@ -265,10 +276,11 @@ export default function AsciiPortrait() {
     }
 
     const ready = (raw: RawParticle[]) => {
+      const scatter = size * 0.8
       particlesRef.current = raw.map((p) => {
         const part: Particle = {
-          x: animate ? p.x + (Math.random() - 0.5) * 380 : p.x,
-          y: animate ? p.y + (Math.random() - 0.5) * 380 : p.y,
+          x: animate ? p.x + (Math.random() - 0.5) * scatter : p.x,
+          y: animate ? p.y + (Math.random() - 0.5) * scatter : p.y,
           targetX: p.x,
           targetY: p.y,
           vx: 0,
@@ -370,7 +382,10 @@ export default function AsciiPortrait() {
         width: `${dim}px`,
         height: `${dim}px`,
         cursor: 'crosshair',
-        touchAction: 'none',
+        touchAction: 'pan-y',
+        border: 'none',
+        outline: 'none',
+        boxShadow: 'none',
         // fade only the lower body (shoulders/arms) into the page — the full
         // head + face stay solid so the likeness and hair are never cropped
         WebkitMaskImage:

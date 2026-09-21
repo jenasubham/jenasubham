@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative mx-auto flex min-h-screen max-w-[1400px] flex-col px-6 pb-10 pt-16 md:px-12 md:pb-12 md:pt-20"
+      className="relative mx-auto flex min-h-screen max-w-[1400px] flex-col px-5 pb-10 pt-16 sm:px-6 md:px-12 md:pb-12 md:pt-20"
     >
       {/* status bar */}
       <div className="seq-status flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
@@ -24,10 +24,13 @@ export default function Hero() {
       <div className="hero-shrink flex flex-1 flex-col justify-center pb-2">
         {/* name — bold headline, tight leading, scaled to sit nicely in 100vh */}
         <h1
-          className="seq-name font-sans font-bold leading-[0.9] tracking-[-0.04em]"
-          style={{ fontSize: 'clamp(54px, 10.5vw, 155px)' }}
+          className="seq-name font-sans font-bold leading-[0.92] md:leading-[0.9] tracking-[-0.04em]"
+          style={{ fontSize: 'clamp(44px, 11vw, 155px)' }}
         >
-          <span className="text-accent">Subham Jena</span><span className="dot-white ml-4">.</span>
+          <span className="text-accent">Subham</span>{' '}
+          <span className="text-accent whitespace-nowrap">
+            Jena<span className="dot-white ml-1.5 md:ml-4">.</span>
+          </span>
           <span className="sr-only"> — Frontend Software Engineer in New Delhi, India</span>
         </h1>
 
@@ -37,39 +40,39 @@ export default function Hero() {
             {/* tagline — high impact headline designed for CTOs & founders */}
             <div className="hero-parallax max-w-[820px]">
               <h2
-                className="seq-tagline font-sans font-semibold leading-[1.08] tracking-[-0.02em] text-heading"
-                style={{ fontSize: 'clamp(24px, 3.6vw, 46px)' }}
+                className="seq-tagline font-sans font-semibold leading-[1.12] md:leading-[1.08] tracking-[-0.02em] text-heading"
+                style={{ fontSize: 'clamp(22px, 4.2vw, 46px)' }}
               >
                 Engineering high-performance web apps & client-side intelligence.
               </h2>
             </div>
 
             {/* skill row */}
-            <ul className="mt-8 grid max-w-[820px] grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-10">
+            <ul className="mt-6 md:mt-8 grid max-w-[820px] grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-10">
               {SKILLS.map((s, i) => (
                 <li key={s.num} className={`group seq-skill-${i + 1}`}>
-                  <div className="font-mono text-[13px] font-semibold tracking-[0.15em] text-whisper">
+                  <div className="font-mono text-[12px] md:text-[13px] font-semibold tracking-[0.15em] text-whisper">
                     {s.num}
                   </div>
-                  <div className="mt-2 font-sans text-[15px] font-medium tracking-[-0.01em] text-ink">
+                  <div className="mt-1 md:mt-2 font-sans text-[14px] md:text-[15px] font-medium tracking-[-0.01em] text-ink">
                     {s.label}
                   </div>
                   {/* a line that grows on hover — width only, 0.3s */}
-                  <div className="mt-3 h-px w-6 bg-accent transition-[width] duration-300 ease-out group-hover:w-full" />
+                  <div className="mt-2 md:mt-3 h-px w-6 bg-accent transition-[width] duration-300 ease-out group-hover:w-full" />
                 </li>
               ))}
             </ul>
 
             {/* paragraph */}
-            <p className="seq-para mt-6 max-w-[500px] text-[15px] leading-[1.65] text-muted">
+            <p className="seq-para mt-5 md:mt-6 max-w-[500px] text-[14px] md:text-[15px] leading-[1.6] md:leading-[1.65] text-muted">
               Sole frontend engineer at a product startup — driving enterprise architecture, direct cloud pipelines, and on-device ML detection that eliminates network latency.
             </p>
 
             {/* CTAs */}
-            <div className="seq-cta mt-6 flex flex-wrap items-center gap-6">
+            <div className="seq-cta mt-6 flex flex-wrap items-center gap-4 sm:gap-6">
               <a
                 href="#work"
-                className="group inline-flex items-center gap-3 rounded-sm border border-rule px-6 py-3 font-mono text-[12px] uppercase tracking-[0.15em] text-ink transition-colors duration-300 hover:border-ink/40"
+                className="group inline-flex items-center gap-2.5 sm:gap-3 rounded-sm border border-rule px-5 py-2.5 sm:px-6 sm:py-3 font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.15em] text-ink transition-colors duration-300 hover:border-ink/40 active:border-accent"
               >
                 View Work
                 <span aria-hidden="true" className="inline-block transition-transform duration-300 ease-out group-hover:translate-x-1 text-accent">
@@ -80,7 +83,7 @@ export default function Hero() {
                 href="/Subham_Jena_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.15em] text-muted transition-colors duration-300 hover:text-ink"
+                className="group inline-flex items-center gap-2 font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.15em] text-muted transition-colors duration-300 hover:text-ink active:text-accent"
               >
                 View Resume
                 <span aria-hidden="true" className="inline-block transition-transform duration-300 ease-out group-hover:translate-x-0.5">

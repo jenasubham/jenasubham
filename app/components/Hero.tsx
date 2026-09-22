@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative mx-auto flex min-h-screen max-w-[1400px] flex-col px-5 pb-10 pt-16 sm:px-6 md:px-12 md:pb-12 md:pt-20"
+      className="relative mx-auto flex min-h-screen max-w-[1400px] flex-col px-5 pb-6 pt-6 sm:px-6 sm:pb-8 sm:pt-10 md:px-12 md:pb-12 md:pt-20"
     >
       {/* status bar */}
       <div className="seq-status flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
@@ -21,7 +21,7 @@ export default function Hero() {
       </div>
 
       {/* the part that shrinks as you scroll away from it */}
-      <div className="hero-shrink flex flex-1 flex-col justify-center pb-2 pt-2 md:pt-0">
+      <div className="hero-shrink flex flex-1 flex-col justify-start md:justify-center pt-2 sm:pt-4 md:pt-0 pb-2">
         {/* Responsive Grid:
             Mobile: 
               Row 1: Subham (full width, massive font)
@@ -81,7 +81,7 @@ export default function Hero() {
             </div>
 
             {/* skill row: 2 lines on mobile, each broken into 2 lines; 3 cols on desktop */}
-            <ul className="mt-6 md:mt-8 grid max-w-[820px] grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3 sm:gap-10">
+            <ul className="mt-5 sm:mt-6 md:mt-8 grid max-w-[820px] grid-cols-2 gap-x-6 gap-y-7 sm:grid-cols-3 sm:gap-10">
               {SKILLS.map((s, i) => (
                 <li
                   key={s.num}
@@ -106,7 +106,7 @@ export default function Hero() {
             </p>
 
             {/* CTAs */}
-            <div className="seq-cta mt-6 flex flex-wrap items-center gap-4 sm:gap-6">
+            <div className="seq-cta mt-5 sm:mt-6 flex flex-wrap items-center gap-4 sm:gap-6">
               <a
                 href="#work"
                 className="group inline-flex items-center gap-2.5 sm:gap-3 rounded-sm border border-rule px-5 py-2.5 sm:px-6 sm:py-3 font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.15em] text-ink transition-colors duration-300 hover:border-ink/40 active:border-accent"

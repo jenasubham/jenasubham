@@ -17,19 +17,28 @@ export default function Projects() {
         {/* FEATURED — CareerPlus Full-Stack Job Portal */}
         <TiltCard
           as="a"
-          href="https://github.com/jenasubham/careerplus"
+          href="https://careerplus-tech.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
-          className="proj-still proj-still--on-accent group col-span-1 row-span-1 flex flex-col justify-between rounded-sm bg-accent p-8 md:col-span-2 md:row-span-2 md:p-10"
+          aria-label="Visit CareerPlus live application (opens in a new tab)"
+          className="proj-still proj-still--on-accent group col-span-1 row-span-1 flex flex-col justify-between rounded-sm bg-accent p-8 md:col-span-2 md:row-span-2 md:p-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-heading"
         >
           <div className="relative z-10">
-            <p className="proj-tag-dark flex items-center gap-3 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]">
+            <div className="flex items-center justify-between">
+              <p className="proj-tag-dark flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]">
+                <span
+                  aria-hidden="true"
+                  className="proj-dot--live inline-block h-2 w-2 rounded-full bg-[#050505]"
+                />
+                Now · Ongoing Project
+              </p>
               <span
                 aria-hidden="true"
-                className="proj-dot--live inline-block h-2 w-2 mr-1 rounded-full bg-[#050505]"
-              />
-              Now · Ongoing Project
-            </p>
+                className="proj-tag-dark flex items-center gap-1 font-mono text-[11px] font-semibold uppercase tracking-[0.15em] transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              >
+                Live <span className="text-[13px] leading-none">↗</span>
+              </span>
+            </div>
             <h3 className="proj-title-dark mt-4 font-serif text-[42px] font-normal leading-[0.95] tracking-[-0.02em] md:text-[54px]">
               CareerPlus -<br />
               <span className="italic">Full-Stack</span> Job Portal
@@ -42,11 +51,24 @@ export default function Projects() {
 
         {/* Personal Finance Tracker */}
         <TiltCard
-          className="proj-card group col-span-1 row-span-1 flex flex-col justify-between rounded-sm border border-rule bg-ink/[0.025] p-7 md:col-span-2"
+          as="a"
+          href="https://expensetrackr-subham.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit Personal Finance Tracker live application (opens in a new tab)"
+          className="proj-card group col-span-1 row-span-1 flex flex-col justify-between rounded-sm border border-rule bg-ink/[0.025] p-7 md:col-span-2 transition-colors duration-300 hover:border-accent/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
-          <p className="relative z-10 font-mono text-[11px] uppercase tracking-[0.15em] text-accent">
-            2026 · Next.js 14 & Firebase
-          </p>
+          <div className="relative z-10 flex items-center justify-between">
+            <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-accent">
+              2026 · Next.js 14 & Firebase
+            </p>
+            <span
+              aria-hidden="true"
+              className="font-mono text-[12px] text-muted transition-all duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
+            >
+              ↗
+            </span>
+          </div>
           <div className="relative z-10">
             <h3 className="font-serif text-[30px] font-normal leading-[1.05] tracking-[-0.02em] text-heading transition-colors duration-300 group-hover:text-heading">
               Personal Finance <span className="italic">Tracker</span>
@@ -59,11 +81,24 @@ export default function Projects() {
 
         {/* Immunefiles & Immuneshare */}
         <TiltCard
-          className="proj-card group col-span-1 row-span-1 flex flex-col justify-between rounded-sm border border-rule bg-ink/[0.025] p-7 md:col-span-2"
+          as="a"
+          href="https://immunefiles.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit Immunefiles live website (opens in a new tab)"
+          className="proj-card group col-span-1 row-span-1 flex flex-col justify-between rounded-sm border border-rule bg-ink/[0.025] p-7 md:col-span-2 transition-colors duration-300 hover:border-accent/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
-          <p className="relative z-10 font-mono text-[11px] uppercase tracking-[0.15em] text-accent">
-            Enterprise Product · PrudentBit
-          </p>
+          <div className="relative z-10 flex items-center justify-between">
+            <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-accent">
+              Enterprise Product · PrudentBit
+            </p>
+            <span
+              aria-hidden="true"
+              className="font-mono text-[12px] text-muted transition-all duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
+            >
+              ↗
+            </span>
+          </div>
           <div className="relative z-10">
             <h3 className="font-serif text-[30px] font-normal leading-[1.05] tracking-[-0.02em] text-heading transition-colors duration-300 group-hover:text-heading">
               Immunefiles & <span className="italic">Immuneshare</span>
@@ -76,11 +111,24 @@ export default function Projects() {
 
         {/* Client-Side Document Redaction */}
         <TiltCard
-          className="proj-card group col-span-1 row-span-1 flex flex-col justify-between rounded-sm border border-rule bg-ink/[0.025] p-7 md:col-span-2"
+          as="a"
+          href="https://immunefiles.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Learn more about Granular Document Redaction at Immunefiles (opens in a new tab)"
+          className="proj-card group col-span-1 row-span-1 flex flex-col justify-between rounded-sm border border-rule bg-ink/[0.025] p-7 md:col-span-2 transition-colors duration-300 hover:border-accent/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
-          <p className="relative z-10 font-mono text-[11px] uppercase tracking-[0.15em] text-accent">
-            Core Engine · Frontend
-          </p>
+          <div className="relative z-10 flex items-center justify-between">
+            <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-accent">
+              Core Engine · Frontend
+            </p>
+            <span
+              aria-hidden="true"
+              className="font-mono text-[12px] text-muted transition-all duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
+            >
+              ↗
+            </span>
+          </div>
           <div className="relative z-10">
             <h3 className="font-serif text-[30px] font-normal leading-[1.05] tracking-[-0.02em] text-heading transition-colors duration-300 group-hover:text-heading">
               Granular Document <span className="italic">Redaction</span>
@@ -94,14 +142,23 @@ export default function Projects() {
         {/* Portfolio Site */}
         <TiltCard
           as="a"
-          href="https://github.com/jenasubham/portfolio"
+          href="https://jenasubham.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
-          className="proj-card group col-span-1 row-span-1 flex flex-col justify-between rounded-sm border border-rule bg-ink/[0.025] p-7 md:col-span-2"
+          aria-label="Visit Personal Portfolio live website (opens in a new tab)"
+          className="proj-card group col-span-1 row-span-1 flex flex-col justify-between rounded-sm border border-rule bg-ink/[0.025] p-7 md:col-span-2 transition-colors duration-300 hover:border-accent/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
-          <p className="relative z-10 font-mono text-[11px] uppercase tracking-[0.15em] text-accent">
-            2026 · Next.js 16
-          </p>
+          <div className="relative z-10 flex items-center justify-between">
+            <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-accent">
+              2026 · Next.js 16
+            </p>
+            <span
+              aria-hidden="true"
+              className="font-mono text-[12px] text-muted transition-all duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
+            >
+              ↗
+            </span>
+          </div>
           <div className="relative z-10">
             <h3 className="font-serif text-[30px] font-normal leading-[1.05] tracking-[-0.02em] text-heading transition-colors duration-300 group-hover:text-heading">
               Personal <span className="italic">Portfolio</span>
